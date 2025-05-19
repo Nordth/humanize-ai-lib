@@ -1,0 +1,38 @@
+{
+  "name": "humanize-ai-lib",
+  "version": "0.0.1",
+  "description": "Humanize string function used in https://humanize-ai.click/",
+  "main": "humanize-string.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nordth/humanize-ai-lib.git"
+  },
+  "keywords": [
+    "typescript",
+    "humanize",
+    "string",
+    "ai",
+    "strip",
+    "unicode"
+  ],
+  "author": "Nordth",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nordth/humanize-ai-lib/issues"
+  },
+  "homepage": "https://github.com/Nordth/humanize-ai-lib#readme",
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.3"
+  },
+  "files": [
+    "dist"
+  ]
+}

@@ -1,6 +1,6 @@
 # Humanize AI Lib
 
-![NPM Version](https://img.shields.io/npm/v/humanize-ai-lib)
+[![NPM Version](https://img.shields.io/npm/v/humanize-ai-lib)](https://www.npmjs.com/package/humanize-ai-lib)
 
 ## Why Clean Up GPT Text?
 
@@ -24,7 +24,7 @@ import { humanizeString } from 'humanize-ai-lib';
 const result = humanizeString(inputText, options);
 
 console.log(result.text); // Humanized text
-console.log(result.count); // Count of changed symbols
+console.log(result.count); // Number of changed symbols
 ```
 
 Options:

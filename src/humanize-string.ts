@@ -52,7 +52,7 @@ export function humanizeString(
     [/[\u00A0]/g, ' ', 'transformNbs'],
     [/[——–]/g, '-', 'transformDashes'],
     [/[“”«»„]/g, '"', 'transformQuotes'],
-    [/[‘’]/g, "'", 'transformQuotes'],
+    [/[‘’ʼ]/g, "'", 'transformQuotes'],
     [/[…]/g, '...', 'transformOther'],
   ];
 

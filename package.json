@@ -1,13 +1,16 @@
 {
   "name": "humanize-ai-lib",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Humanize string function used in https://humanize-ai.click/",
-  "main": "humanize-string.js",
+  "main": "dist/humanize-string.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
     "test": "vitest run",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "check-format": "prettier --check .",
+    "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
+    "ci": "npm run build && npm run check-format && npm run check-exports"
   },
   "repository": {
     "type": "git",
@@ -28,6 +31,7 @@
   },
   "homepage": "https://github.com/Nordth/humanize-ai-lib#readme",
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.1",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3",
     "vitest": "^3.1.3"

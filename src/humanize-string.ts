@@ -39,7 +39,7 @@ export function humanizeString(
   const use_options = { ...DefaultOptions, ...(options ? options : {}) };
   let count = 0;
 
-  const patterns: [RegExp, string, keyof HumanizeStringOptions][] = [
+  const patterns: [RegExp, string | ((substring: string, ...args: any[]) => string), keyof HumanizeStringOptions][] = [
     [
       new RegExp(
         `[${Constants.IGNORABLE_SYMBOLS}\u00AD\u180E\u200B-\u200F\u202A-\u202E\u2060\u2066-\u2069\uFEFF]`,
@@ -50,7 +50,21 @@ export function humanizeString(
     ],
     [/[ \t\x0B\f]+$/gm, '', 'transformTrailingWhitespace'],
     [/[\u00A0]/g, ' ', 'transformNbs'],
-    [/[——–]/g, '-', 'transformDashes'],
+    [/[—]/g, (dash, offset, str) => {
+      const atStart = offset === 0;
+      const atEnd = offset === str.length - 1;
+      const prev = atStart ? '' : str[offset - 1];
+      const next = atEnd ? '' : str[offset + 1];
+      const spaceBefore = !atStart && /\s/.test(prev);
+      const spaceAfter = !atEnd && /\s/.test(next);
+      if (atStart) return '- ';
+      if (atEnd) return spaceBefore ? '-' : ' -';
+      if (spaceBefore && spaceAfter) return '-';
+      if (spaceBefore) return '- ';
+      if (spaceAfter) return ' -';
+      return ' - ';
+    }, 'transformDashes'],
+    [/[–]/g, '-', 'transformDashes'],
     [/[“”«»„]/g, '"', 'transformQuotes'],
     [/[‘’ʼ]/g, "'", 'transformQuotes'],
     [/[…]/g, '...', 'transformOther'],
@@ -62,7 +76,12 @@ export function humanizeString(
       for (const m of matches) {
         count += m[0].length;
       }
-      text = text.replace(pattern[0], pattern[1]);
+      if (typeof pattern[1] === 'string') {
+        text = text.replace(pattern[0], pattern[1]);
+      }
+      else {
+        text = text.replace(pattern[0], pattern[1])
+      }
     }
   }
 

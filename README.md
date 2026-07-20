@@ -12,7 +12,7 @@ Unnecessary whitespace or hidden Unicode characters
 And other symbols
 Cleaning these up makes the text flow more naturally, improving readability and keeping readers engaged.
 
-This package contains humanization function used on http://humanize-ai.click/
+This package contains humanization function used on https://humanize-ai.click/
 
 ## Usage
 
